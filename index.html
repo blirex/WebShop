@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Мій Інтернет-магазин</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Інтернет-магазин</h1>
+
+<div class="products">
+
+  <div class="product-card">
+    <img src="photo/graphicCard.jpg">
+    <h2 class="product-title">Graphic card Nvidia RTX 5090Ti</h2>
+    <p class="price">90000 UAH</p>
+
+    <div class="items counter-wrapper">
+      <div class="items_control" data-action="minus">-</div>
+      <div class="items_current" data-counter>1</div>
+      <div class="items_control" data-action="plus">+</div>
+    </div>
+
+    <button data-cart class="add-to-cart">Додати в кошик</button>
+  </div>
+
+  <div class="product-card">
+    <img src="photo/case.jpg">
+    <h2 class="product-title">Aluminium case for iPhone 17 Pro Max</h2>
+    <p class="price">1200 UAH
+    </p>
+
+    <div class="items counter-wrapper">
+      <div class="items_control" data-action="minus">-</div>
+      <div class="items_current" data-counter>1</div>
+      <div class="items_control" data-action="plus">+</div>
+    </div>
+
+    <button data-cart class="add-to-cart">Додати в кошик</button>
+  </div>
+
+</div>
+
+<div class="cart">
+  <h2>Кошик</h2>
+  <ul id="cart-items"></ul>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
