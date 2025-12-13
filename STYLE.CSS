@@ -10,28 +10,29 @@ h1 {
 
 .products {
   display: flex;
-  gap: 20px;
+  gap: 25px;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .product-card {
-  background: #fff;
+  background: white;
   padding: 15px;
-  width: 220px;
+  width: 230px;
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.product-card img {
+.product-img {
   width: 100%;
   border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .price {
   font-weight: bold;
-  color: rgb(22, 173, 22);
+  color: green;
 }
 
 .items {
@@ -53,14 +54,14 @@ h1 {
   background: #3498db;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 8px;
   border-radius: 6px;
   cursor: pointer;
 }
 
 .cart {
   margin-top: 40px;
-  max-width: 500px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   background: white;
@@ -70,13 +71,20 @@ h1 {
 
 .cart-item {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 10px;
-  margin-bottom: 10px;
   background: #f5f5f5;
   padding: 10px;
+  margin-bottom: 10px;
   border-radius: 6px;
 }
 
 .cart-item img {
-  width: 50px;
+  width: 60px;
+  border-radius: 5px;
+}
+
+.cart-info {
+  flex-grow: 1;
 }
