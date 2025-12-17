@@ -1,4 +1,3 @@
-// ===== Показ / приховування кошика =====
 function toggleCartStatus() {
   const cartItems = document.getElementById('cart-items');
   const emptyBlock = document.querySelector('.cart-empty');
@@ -13,7 +12,6 @@ function toggleCartStatus() {
   }
 }
 
-// ===== Підрахунок загальної суми =====
 function calcCartPrice() {
   const cartItems = document.querySelectorAll('.cart-item');
   const totalPriceEl = document.querySelector('.total-price');
@@ -32,7 +30,6 @@ function calcCartPrice() {
   totalPriceEl.innerText = totalPrice;
 }
 
-// ===== Головний обробник кліків =====
 window.addEventListener('click', function (event) {
 
   // + / -
@@ -60,7 +57,6 @@ window.addEventListener('click', function (event) {
     calcCartPrice();
   }
 
-  // Додати в кошик
   if (event.target.hasAttribute('data-cart')) {
 
     const card = event.target.closest('.product-card');
@@ -109,5 +105,4 @@ window.addEventListener('click', function (event) {
   }
 });
 
-// Початковий стан
 toggleCartStatus();
