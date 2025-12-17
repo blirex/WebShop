@@ -88,3 +88,24 @@ h1 {
 .cart-info {
   flex-grow: 1;
 }
+
+.cart-empty {
+  text-align: center;
+  color: gray;
+}
+
+.cart-total {
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.checkout {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

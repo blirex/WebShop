@@ -1,5 +1,41 @@
+// ===== Показ / приховування кошика =====
+function toggleCartStatus() {
+  const cartItems = document.getElementById('cart-items');
+  const emptyBlock = document.querySelector('.cart-empty');
+  const checkoutBtn = document.querySelector('.checkout');
+
+  if (cartItems.children.length === 0) {
+    emptyBlock.style.display = 'block';
+    checkoutBtn.style.display = 'none';
+  } else {
+    emptyBlock.style.display = 'none';
+    checkoutBtn.style.display = 'block';
+  }
+}
+
+// ===== Підрахунок загальної суми =====
+function calcCartPrice() {
+  const cartItems = document.querySelectorAll('.cart-item');
+  const totalPriceEl = document.querySelector('.total-price');
+  let totalPrice = 0;
+
+  cartItems.forEach(item => {
+    const price = parseInt(
+      item.querySelector('.cart-price').dataset.price
+    );
+    const count = parseInt(
+      item.querySelector('[data-counter]').innerText
+    );
+    totalPrice += price * count;
+  });
+
+  totalPriceEl.innerText = totalPrice;
+}
+
+// ===== Головний обробник кліків =====
 window.addEventListener('click', function (event) {
 
+  // + / -
   if (event.target.dataset.action === 'plus' ||
       event.target.dataset.action === 'minus') {
 
@@ -15,10 +51,16 @@ window.addEventListener('click', function (event) {
     if (event.target.dataset.action === 'minus') {
       if (counter.innerText > 1) {
         counter.innerText = --counter.innerText;
+      } else if (event.target.closest('.cart-item')) {
+        event.target.closest('.cart-item').remove();
       }
     }
+
+    toggleCartStatus();
+    calcCartPrice();
   }
 
+  // Додати в кошик
   if (event.target.hasAttribute('data-cart')) {
 
     const card = event.target.closest('.product-card');
@@ -26,15 +68,15 @@ window.addEventListener('click', function (event) {
     const productInfo = {
       id: card.querySelector('.product-title').innerText,
       title: card.querySelector('.product-title').innerText,
-      price: card.querySelector('.price').innerText,
-      img: card.querySelector('.product-img').getAttribute('src'),
+      price: card.querySelector('.price').dataset.price,
+      img: card.querySelector('.product-img').src,
       count: parseInt(card.querySelector('[data-counter]').innerText)
     };
 
     const cartItems = document.getElementById('cart-items');
 
-    const existingItem = [...cartItems.children].find(item =>
-      item.dataset.id === productInfo.id
+    const existingItem = [...cartItems.children].find(
+      item => item.dataset.id === productInfo.id
     );
 
     if (existingItem) {
@@ -46,7 +88,9 @@ window.addEventListener('click', function (event) {
           <img src="${productInfo.img}">
           <div class="cart-info">
             <strong>${productInfo.title}</strong><br>
-            ${productInfo.price} грн
+            <span class="cart-price" data-price="${productInfo.price}">
+              ${productInfo.price} грн
+            </span>
           </div>
           <div class="items counter-wrapper">
             <div class="items_control" data-action="minus">-</div>
@@ -59,19 +103,11 @@ window.addEventListener('click', function (event) {
     }
 
     card.querySelector('[data-counter]').innerText = '1';
-  }
 
-  if (
-    event.target.dataset.action === 'minus' &&
-    event.target.closest('.cart')
-  ) {
-    const counterWrapper = event.target.closest('.counter-wrapper');
-    const counter = counterWrapper.querySelector('[data-counter]');
-
-    if (counter.innerText > 1) {
-      counter.innerText = --counter.innerText;
-    } else {
-      event.target.closest('.cart-item').remove();
-    }
+    toggleCartStatus();
+    calcCartPrice();
   }
 });
+
+// Початковий стан
+toggleCartStatus();
